@@ -22,7 +22,7 @@ const createCards = (products) => {
       <p class="mb-3">Prezzo: ${el.price}$</p>
       <div class="d-flex flex-column flex-xl-row">
       <a href="./backoffice.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-warning">Modifica</a>
-      <a href="./details.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-info">Scopri di più</a>
+      <a href="./details.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-secondary">Scopri di più</a>
 
       </div>
     </div>
