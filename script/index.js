@@ -1,3 +1,6 @@
+const modal = new bootstrap.Modal(document.getElementById("alertError"));
+const errorModal = document.getElementById("alertText");
+
 // CREO GLI ELEMENTI
 
 const createCards = (products) => {
@@ -52,7 +55,17 @@ const getProducts = () => {
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error("Si è verificato un errore!");
+        if (res.status === 404) {
+          throw new Error("404 - Not Found");
+        } else if (res.status === 403) {
+          throw new Error("Forbidden");
+        } else if (res.status === 401) {
+          throw new Error("Unauthorized");
+        } else if (res.status === 429) {
+          throw new Error("Too Many Request");
+        } else if (res.status === 500) {
+          throw new Error("Internal Server Error");
+        }
       }
     })
     .then((data) => {
@@ -61,7 +74,9 @@ const getProducts = () => {
     })
     .catch((err) => {
       hideSpinner();
-      console.log(err);
+
+      alertText.innerHTML = `${err}`;
+      modal.show();
     });
 };
 
