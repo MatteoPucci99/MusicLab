@@ -1,4 +1,4 @@
-// INDICE RICHIAMO ELEMENTI DELLA PAGINA (FORM E INPUT)
+// INDICE RICHIAMO ELEMENTI DELLA PAGINA (FORM E INPUT & co.)
 const form = document.getElementById("form");
 const nameProduct = document.getElementById("name");
 const descriptionProduct = document.getElementById("description");
@@ -6,6 +6,8 @@ const brandProduct = document.getElementById("brand");
 const imgProduct = document.getElementById("imageUrl");
 const priceProduct = document.getElementById("price");
 const modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+const modalError = new bootstrap.Modal(document.getElementById("alertError"));
+const textModalError = document.getElementById("alertText");
 const secondModal = new bootstrap.Modal(
   document.getElementById("staticBackdrop2")
 );
@@ -28,7 +30,17 @@ if (productId) {
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error("Attenzion errore nel recupero dei dati!");
+        if (res.status === 404) {
+          throw new Error("404 - Not Found");
+        } else if (res.status === 403) {
+          throw new Error("Forbidden");
+        } else if (res.status === 401) {
+          throw new Error("Unauthorized");
+        } else if (res.status === 429) {
+          throw new Error("Too Many Request");
+        } else if (res.status === 500) {
+          throw new Error("Internal Server Error");
+        }
       }
     })
     .then((productData) => {
@@ -48,7 +60,8 @@ if (productId) {
       priceProduct.value = productData.price;
     })
     .catch((err) => {
-      console.log(err);
+      textModalError.innerHTML = `${err}`;
+      modalError.show();
     });
 }
 
@@ -65,11 +78,22 @@ const deleteCard = () => {
       if (res.ok) {
         location.assign("./index.html");
       } else {
-        throw new Error("C'è stato un errore con l'eliminazione del prodotto!");
+        if (res.status === 404) {
+          throw new Error("404 - Not Found");
+        } else if (res.status === 403) {
+          throw new Error("Forbidden");
+        } else if (res.status === 401) {
+          throw new Error("Unauthorized");
+        } else if (res.status === 429) {
+          throw new Error("Too Many Request");
+        } else if (res.status === 500) {
+          throw new Error("Internal Server Error");
+        }
       }
     })
     .catch((err) => {
-      console.log(err);
+      textModalError.innerHTML = `${err}`;
+      modalError.show();
     });
 };
 
@@ -143,12 +167,21 @@ form.addEventListener("submit", (e) => {
       if (res.ok) {
         alert("Prodotto inviato correttamente!");
       } else {
-        throw new Error(
-          "Attenzione si è verificato un errore nel salvataggio!"
-        );
+        if (res.status === 404) {
+          throw new Error("404 - Not Found");
+        } else if (res.status === 403) {
+          throw new Error("Forbidden");
+        } else if (res.status === 401) {
+          throw new Error("Unauthorized");
+        } else if (res.status === 429) {
+          throw new Error("Too Many Request");
+        } else if (res.status === 500) {
+          throw new Error("Internal Server Error");
+        }
       }
     })
     .catch((err) => {
-      console.log(err);
+      textModalError.innerHTML = `${err}`;
+      modalError.show();
     });
 });
