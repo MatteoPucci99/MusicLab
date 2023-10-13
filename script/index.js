@@ -4,21 +4,22 @@ const createCards = (products) => {
   const row = document.getElementById("row");
   products.forEach((el, index) => {
     const newCol = document.createElement("div");
-    newCol.classList.add("col", "col-8", "col-md-4", "col-lg-3");
+    newCol.classList.add("col", "col-8", "col-md-4", "col-lg-3", "mb-3");
     newCol.innerHTML = `
-<div class="card mb-3">
+<div class="card mb-3 h-100">
     <img
         src="${el.imageUrl}"
         class="card-img-top"
         alt="product-img${index}"
     />
 
-    <div class="card-body">
+    <div class="card-body d-flex flex-column justify-content-between">
       <h5 class="card-title">${el.brand}</h5>
       <p class="card-text text-decoration-underline">${el.name}</p>
       <p class="card-text">
-      ${el.description} <span class="ms-3">${el.price}</span>
+      ${el.description} 
       </p>
+      <p class="mb-3">Prezzo: ${el.price}$</p>
       <div class="d-flex flex-column flex-xl-row">
       <a href="./backoffice.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-warning">Modifica</a>
       <a href="./details.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-info">Scopri di più</a>

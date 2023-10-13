@@ -30,8 +30,9 @@ fetch("https://striveschool-api.herokuapp.com/api/product/" + productId, {
       <p class="card-text text-decoration-underline">${data.brand}</p>
       <p class="card-text">
         ${data.description}
-        <span class="ms-3">${data.price}$</span>
+        
       </p>
+      <p class="mb-3">Al prezzo di: ${data.price}$</p>
       <div class="d-flex flex-column flex-xl-row">
         <a href="./index.html" class="mb-3 me-xl-2 btn btn-success"
           >Torna a Home</a
