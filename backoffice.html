@@ -63,6 +63,90 @@
       </nav>
     </header>
     <main>
+      <!-- MODALE PER RESET -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Vuoi procedere con l'operazione?
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                NO
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="confirmForReset()"
+              >
+                SI
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- MODALE PER DELETE -->
+      <div
+        class="modal fade"
+        id="staticBackdrop2"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel2">
+                Vuoi procedere con l'operazione?
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                NO
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="confirmForDelete()"
+              >
+                SI
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div class="row mt-5 justify-content-center">
           <div class="col-12 col-md-8 col-lg-6">
@@ -111,14 +195,14 @@
                 type="button"
                 class="btn btn-danger d-none"
                 id="deleteButton"
-                onclick="deleteCard()"
+                onclick="showSecondModal()"
               >
                 Cancella
               </button>
               <button
                 type="button"
                 class="btn btn-secondary"
-                onclick="resetForm()"
+                onclick="showModal()"
               >
                 Resetta i campi
               </button>

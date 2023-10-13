@@ -5,6 +5,11 @@ const descriptionProduct = document.getElementById("description");
 const brandProduct = document.getElementById("brand");
 const imgProduct = document.getElementById("imageUrl");
 const priceProduct = document.getElementById("price");
+const modal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
+const secondModal = new bootstrap.Modal(
+  document.getElementById("staticBackdrop2")
+);
+const confirmModal = document.querySelector("#staticBackdrop .show");
 
 // RINTRACCIO L'ID DAL BARRA RICERCA
 const addressBarContent = new URLSearchParams(location.search);
@@ -58,7 +63,6 @@ const deleteCard = () => {
   })
     .then((res) => {
       if (res.ok) {
-        alert("Prodotto eliminato");
         location.assign("./index.html");
       } else {
         throw new Error("C'è stato un errore con l'eliminazione del prodotto!");
@@ -67,6 +71,28 @@ const deleteCard = () => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+// FUNCTION PER APRIRE IL MODALE 1
+const showModal = () => {
+  modal.show();
+};
+// FUNCTION PER APRIRE IL MODALE 2
+const showSecondModal = () => {
+  secondModal.show();
+};
+
+// FUNCTION CONFIRM FOR RESET
+const confirmForReset = () => {
+  resetForm();
+
+  modal.hide();
+};
+// FUNCTION CONFIRM FOR DELETE
+const confirmForDelete = () => {
+  deleteCard();
+
+  modal.hide();
 };
 
 //FUNCTION PER RESETTARE GLI INPUT DEL FORM
