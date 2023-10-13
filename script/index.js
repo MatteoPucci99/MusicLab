@@ -17,7 +17,7 @@ const createCards = (products) => {
       <h5 class="card-title">${el.brand}</h5>
       <p class="card-text text-decoration-underline">${el.name}</p>
       <p class="card-text">
-        ${el.description} <span class="ms-3">${el.price}</span>
+      ${el.description} <span class="ms-3">${el.price}</span>
       </p>
       <div class="d-flex flex-column flex-xl-row">
       <a href="./backoffice.html?productId=${el._id}" class="mb-3 me-xl-2 btn btn-warning">Modifica</a>
@@ -31,6 +31,12 @@ const createCards = (products) => {
     row.appendChild(newCol);
   });
 };
+// RECUPERO LO SPINNER PER NASCONDERLO UNA VOLTA CARICATA LA PAGINA
+const spinner = document.getElementById("spinner");
+// FUNZIONE PER NASCONDERLO
+const hideSpinner = () => {
+  spinner.classList.add("d-none");
+};
 
 // RECUPERO GLI ELEMENTI
 const getProducts = () => {
@@ -41,6 +47,7 @@ const getProducts = () => {
     },
   })
     .then((res) => {
+      hideSpinner();
       if (res.ok) {
         return res.json();
       } else {
@@ -52,6 +59,7 @@ const getProducts = () => {
       createCards(data);
     })
     .catch((err) => {
+      hideSpinner();
       console.log(err);
     });
 };
